@@ -236,7 +236,7 @@ function CreateMagicDust(x1, x2, y1, y2, sizeRatio, fallingTime, animationDelay,
 // Letter Text Animation
 let indexText = 0;
 let textLetter = document.querySelector('.textLetter h2');
-const textLetterH2 = "Gửi bạn Linh Lê yêu dấu 😆!";
+const textLetterH2 = "Gửi Người Lạ hơi quen 😆!";
 let timoutTextLetter;
 
 function textCharLetter() {
@@ -266,9 +266,9 @@ function funcTimeoutLetter() {
 let indexTextContent = 0;
 let textLetterContent = document.querySelector('.contentLetter');
 const textLetterP = 
-"Chúc cậu 20/10 thật nhiều niềm vui và những điều dễ thương nha 💖.\n" +
-"Cậu cứ cười thật nhiều nhé, vì mỗi lần thấy cậu cười là tớ cũng vui theo rồi 😅.\n" +
-"À… nếu hôm nay chưa có ai chúc cậu, thì coi như tớ là người đầu tiên nha 😆.";
+"20/10 này, anh không biết tặng em gì ngoài vài dòng chữ nhỏ.\n" +
+"Chúc em luôn vui vẻ, xinh đẹp và được bao quanh bởi những điều tốt đẹp nhất.\n" +
+"Còn nếu hôm nay em cần ai đó khiến em mỉm cười, thì… anh tình nguyện nha 😌🌷";
 
 let timoutTextLetterContent;
 
