@@ -5,17 +5,89 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fae1dd 0%, #f8c8dc 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Main Container */
+.main-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
 /* Container Styles */
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 97vh;
+    height: 100vh;
+    position: relative;
 }
 
 .container svg {
     width: 50%;
     height: 50%;
+    max-width: 400px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.container svg:hover {
+    transform: scale(1.05);
+}
+
+/* Improved Click Button */
+.click-container {
+    position: absolute;
+    bottom: 20%;
+    text-align: center;
+    z-index: 10;
+}
+
+.click-button {
+    background: linear-gradient(45deg, #e91e63, #ff4081);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.click-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(233, 30, 99, 0.4);
+    background: linear-gradient(45deg, #d81b60, #f50057);
+}
+
+.click-button:active {
+    transform: translateY(-1px);
+}
+
+.click-hint {
+    margin-top: 15px;
+    color: #e91e63;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.8;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
 }
 
 /* Valentine Card Styles */
@@ -76,6 +148,7 @@
     left: 15px;
     box-shadow: -5px -5px 100px rgba(0, 0, 0, 0.4);
     transition: top 0.5s ease;
+    cursor: pointer;
 }
 
 .card:before {
@@ -269,73 +342,6 @@
     opacity: 0;
 }
 
-/* Animation Classes */
-.hover-animation {
-    animation: hover 1.75s ease-in-out infinite;
-}
-
-@keyframes hover {
-    0% {
-        margin-top: 60px;
-    }
-    50% {
-        margin-top: 50px;
-    }
-    100% {
-        margin-top: 60px;
-    }
-}
-
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 25px 0 #e8b2ca;
-    }
-    50% {
-        box-shadow: 0 0 45px 0 #e8b2ca;
-    }
-    100% {
-        box-shadow: 0 0 25px 0 #e8b2ca;
-    }
-}
-
-@keyframes fall {
-    5% {
-        top: 209px;
-        left: 105px;
-        transform: rotate(55deg) scale(0.9, 0.95) skew(-18deg);
-        opacity: 0.9;
-    }
-    30% {
-        left: 90px;
-    }
-    55% {
-        left: 130px;
-    }
-    60%, 100% {
-        top: 380px;
-        transform: rotate(30deg) scale(0.9, 0.95) skew(-32deg);
-        opacity: 0;
-    }
-}
-
-@keyframes floatAnimate {
-    0% {
-        background-size: 105% 120%;
-        background-position: 0 0;
-        opacity: 0.7;
-    }
-    50% {
-        background-size: 100% 100%;
-        background-position: 0 0;
-        opacity: 0.5;
-    }
-    100% {
-        background-size: 105% 120%;
-        background-position: 0 0;
-        opacity: 0.7;
-    }
-}
-
 /* SVG Text Animation */
 svg {
     width: 80%;
@@ -355,20 +361,9 @@ text {
     font-size: 9px;
 }
 
-p {
-    position: absolute;
-    z-index: 2;
-}
-
-label {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    opacity: .8;
-}
-
 /* Letter Form Styles */
 .wrapperLetterForm {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -476,6 +471,8 @@ label {
 .textLetter h2 {
     font-size: 30px;
     font-family: 'Dancing Script', cursive;
+    color: #e91e63;
+    margin-bottom: 20px;
 }
 
 .textLetter .contentLetter {
@@ -485,9 +482,11 @@ label {
     margin-top: 10px;
     font-family: 'Dancing Script', cursive;
     position: initial;
+    color: #555;
+    line-height: 1.6;
 }
 
-.fa-xmark {
+.close-btn {
     position: absolute;
     right: 20px;
     top: 20px;
@@ -495,6 +494,11 @@ label {
     cursor: pointer;
     font-size: 25px;
     z-index: 1001;
+    transition: transform 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
 }
 
 .show {
@@ -530,11 +534,44 @@ label {
     width: 100%;
 }
 
-/* Click Text */
-#text-click {
-    display: none;
-    font-family: fantasy;
-    color: indianred;
-    font-size: 50px;
-    top: 80%;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container svg {
+        width: 70%;
+        height: 70%;
+    }
+    
+    .click-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+    
+    .boxLetter .formLetter {
+        width: 90%;
+        height: 300px;
+    }
+    
+    .textLetter h2 {
+        font-size: 24px;
+    }
+    
+    .textLetter .contentLetter {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container svg {
+        width: 85%;
+        height: 85%;
+    }
+    
+    .click-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .click-hint {
+        font-size: 0.8rem;
+    }
 }
